@@ -100,7 +100,6 @@
           </span>
           <label
             for="course-cover-input"
-            aria-labelledby="cover-file-label"
             class="flex flex-col items-center justify-center w-full h-44 border-2 border-dashed border-slate-300 hover:border-indigo-500 rounded-2xl cursor-pointer bg-slate-50 hover:bg-indigo-50/20 transition-all overflow-hidden relative"
           >
             {#if previewUrl}
@@ -125,6 +124,7 @@
               type="file"
               data-testid="cover-file-input"
               accept=".jpg,.jpeg,.png"
+              aria-labelledby="cover-file-label"
               on:change={handleFileChange}
               class="hidden"
             />

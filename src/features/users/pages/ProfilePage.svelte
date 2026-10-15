@@ -127,20 +127,23 @@
         {/if}
 
         <label
+          for="profile-photo-input"
           data-testid="upload-profile-photo-btn"
           class="absolute bottom-0 right-0 p-2 rounded-full bg-indigo-700 hover:bg-indigo-800 text-white shadow-md cursor-pointer transition-transform hover:scale-105"
           title="Ubah Foto Profil"
-          aria-label="Ubah Foto Profil"
         >
+          <span class="sr-only">Ubah Foto Profil</span>
           {#if loadingPhoto}
             <LoaderCircle size={16} class="animate-spin" />
           {:else}
-            <Camera size={16} />
+            <Camera size={16} aria-hidden="true" />
           {/if}
           <input
+            id="profile-photo-input"
             type="file"
             data-testid="profile-photo-file-input"
             accept="image/*"
+            aria-label="Ubah Foto Profil"
             on:change={handlePhotoUpload}
             class="hidden"
           />

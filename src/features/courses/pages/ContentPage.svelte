@@ -64,6 +64,9 @@
   $: embedUrl = getEmbedUrl(content?.youtube);
   $: isFinished = !!(content && (content.my_status_finished === true || content.my_status_finished === 1));
 
+  const videoSrcdoc =
+    '<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%;background:#0f172a;font-family:sans-serif}button{width:100%;height:100%;border:0;background:transparent;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;gap:12px}.play{background:#dc2626;padding:14px 28px;border-radius:999px;font-weight:700;font-size:15px;box-shadow:0 10px 25px rgba(220,38,38,0.4)}</style><button type="button" onclick="window.frameElement.removeAttribute(\'srcdoc\')"><span class="play">▶ Putar Video Materi</span></button>';
+
   async function handleToggleStatus() {
     togglingStatus = true;
     const nextStatus = isFinished ? 0 : 1;
@@ -109,6 +112,7 @@
         {#if embedUrl}
           <iframe
             src={embedUrl}
+            srcdoc={videoSrcdoc}
             title={`Video Materi: ${content.title}`}
             loading="lazy"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
