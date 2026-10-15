@@ -73,8 +73,8 @@
 
 {#if !profile || !content}
   <div class="flex flex-col items-center justify-center py-20">
-    <div class="w-8 h-8 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin"></div>
-    <p class="text-sm font-medium text-slate-500 mt-2">Memuat materi pembelajaran...</p>
+    <div class="w-8 h-8 border-4 border-indigo-700 border-t-transparent rounded-full animate-spin"></div>
+    <p class="text-sm font-medium text-slate-600 mt-2">Memuat materi pembelajaran...</p>
   </div>
 {:else}
   <div class="space-y-6 max-w-5xl mx-auto animate-in fade-in duration-300">
@@ -83,7 +83,7 @@
       <a
         href={`/courses/${courseId}`}
         data-testid="back-to-course-detail-link"
-        class="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-colors"
+        class="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-indigo-700 transition-colors"
       >
         <ArrowLeft size={18} />
         Kembali ke Kursus {course?.title ? `(${course.title})` : ""}
@@ -110,6 +110,7 @@
           <iframe
             src={embedUrl}
             title={`Video Materi: ${content.title}`}
+            loading="lazy"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen
             class="w-full h-full border-0"
@@ -125,7 +126,7 @@
       <div class="p-6 sm:p-8 space-y-6">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-6">
           <div class="space-y-1">
-            <span class="font-mono text-xs font-bold text-slate-400">
+            <span class="font-mono text-xs font-bold text-slate-600">
               Materi #{content.id}
             </span>
             <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
@@ -139,7 +140,7 @@
             data-testid="toggle-learn-status-btn"
             on:click={handleToggleStatus}
             disabled={togglingStatus}
-            class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm transition-all shadow-xs {isFinished ? 'bg-amber-50 text-amber-800 hover:bg-amber-100 border border-amber-200' : 'bg-emerald-600 text-white hover:bg-emerald-700 active:bg-emerald-800 shadow-emerald-600/20'}"
+            class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm transition-all shadow-xs {isFinished ? 'bg-amber-50 text-amber-800 hover:bg-amber-100 border border-amber-200' : 'bg-emerald-700 text-white hover:bg-emerald-800 active:bg-emerald-900 shadow-emerald-600/20'}"
           >
             {#if togglingStatus}
               <LoaderCircle size={16} class="animate-spin" />
@@ -155,10 +156,10 @@
         </div>
 
         <div class="space-y-2">
-          <h2 class="text-sm font-bold uppercase tracking-wider text-slate-500">
+          <h2 class="text-sm font-bold uppercase tracking-wider text-slate-600">
             Tautan Pembelajaran
           </h2>
-          <p class="text-sm font-mono text-indigo-600 break-all bg-slate-50 p-3 rounded-xl border border-slate-100">
+          <p class="text-sm font-mono text-indigo-700 break-all bg-slate-50 p-3 rounded-xl border border-slate-100">
             {content.youtube}
           </p>
         </div>

@@ -87,7 +87,7 @@
           data-testid="close-cover-modal-btn"
           aria-label="Tutup modal ubah cover"
           on:click={handleClose}
-          class="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors"
+          class="p-1.5 rounded-lg text-slate-600 hover:text-slate-800 hover:bg-slate-100 transition-colors"
         >
           <X size={18} />
         </button>
@@ -111,13 +111,13 @@
               />
             {:else}
               <div class="flex flex-col items-center justify-center pt-5 pb-6 text-center px-4">
-                <div class="w-10 h-10 mb-2 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center">
+                <div class="w-10 h-10 mb-2 rounded-full bg-indigo-50 text-indigo-700 flex items-center justify-center">
                   <Upload size={20} />
                 </div>
                 <p class="text-sm font-semibold text-slate-700">
                   Klik untuk memilih foto
                 </p>
-                <p class="text-xs text-slate-500 mt-1">PNG, JPG, JPEG (Max. 1MB)</p>
+                <p class="text-xs text-slate-600 mt-1">PNG, JPG, JPEG (Max. 1MB)</p>
               </div>
             {/if}
             <input
@@ -145,7 +145,7 @@
             type="submit"
             data-testid="submit-cover-modal-btn"
             disabled={loading}
-            class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white bg-sky-600 hover:bg-sky-700 active:bg-sky-800 rounded-xl shadow-md shadow-sky-600/25 transition-all disabled:opacity-60"
+            class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white bg-sky-700 hover:bg-sky-800 active:bg-sky-900 rounded-xl shadow-md shadow-sky-600/25 transition-all disabled:opacity-60"
           >
             {#if loading}
               <LoaderCircle size={18} class="animate-spin" />

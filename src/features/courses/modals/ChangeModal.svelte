@@ -101,7 +101,7 @@
           data-testid="close-edit-modal-btn"
           aria-label="Tutup modal ubah kursus"
           on:click={handleClose}
-          class="p-2 rounded-xl text-slate-500 hover:text-slate-700 hover:bg-slate-200/60 transition-colors"
+          class="p-2 rounded-xl text-slate-600 hover:text-slate-800 hover:bg-slate-200/60 transition-colors"
         >
           <X size={20} />
         </button>
@@ -112,7 +112,7 @@
         <div class="p-6 space-y-4">
           {#if fetchingCourse}
             <div class="flex items-center justify-center py-12">
-              <LoaderCircle size={32} class="animate-spin text-amber-600" />
+              <LoaderCircle size={32} class="animate-spin text-amber-700" />
             </div>
           {:else}
             <div>
@@ -166,7 +166,7 @@
             type="submit"
             data-testid="submit-edit-modal-btn"
             disabled={loading || fetchingCourse}
-            class="inline-flex items-center gap-2 px-6 py-2.5 text-sm font-semibold text-white bg-amber-600 hover:bg-amber-700 active:bg-amber-800 rounded-xl shadow-md shadow-amber-600/25 transition-all disabled:opacity-60"
+            class="inline-flex items-center gap-2 px-6 py-2.5 text-sm font-semibold text-white bg-amber-700 hover:bg-amber-800 active:bg-amber-900 rounded-xl shadow-md shadow-amber-600/25 transition-all disabled:opacity-60"
           >
             {#if loading}
               <LoaderCircle size={18} class="animate-spin" />

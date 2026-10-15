@@ -92,7 +92,7 @@
         <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
           Daftar Kursus
         </h1>
-        <p class="text-sm text-slate-500 mt-1">
+        <p class="text-sm text-slate-600 mt-1">
           Kelola dan ikuti berbagai kursus pembelajaran daring interaktif.
         </p>
       </div>
@@ -111,7 +111,7 @@
           type="button"
           data-testid="add-course-btn"
           on:click={() => (showAddModal = true)}
-          class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-semibold text-sm text-white bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 shadow-md shadow-indigo-600/25 transition-all self-start sm:self-auto"
+          class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-semibold text-sm text-white bg-indigo-700 hover:bg-indigo-800 active:bg-indigo-900 shadow-md shadow-indigo-600/25 transition-all self-start sm:self-auto"
         >
           <Plus size={18} strokeWidth={2.5} />
           <span>Tambah Kursus</span>
@@ -123,38 +123,38 @@
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
       <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs flex items-center justify-between">
         <div>
-          <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">
+          <p class="text-xs font-semibold uppercase tracking-wider text-slate-600">
             Total Kursus
           </p>
           <h2 class="text-3xl font-black text-slate-800 mt-1">{totalCount}</h2>
         </div>
-        <div class="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
+        <div class="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-700 flex items-center justify-center">
           <BookOpen size={26} strokeWidth={2} />
         </div>
       </div>
 
       <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs flex items-center justify-between">
         <div>
-          <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">
+          <p class="text-xs font-semibold uppercase tracking-wider text-slate-600">
             Kursus Saya
           </p>
-          <h2 class="text-3xl font-black text-indigo-600 mt-1">
+          <h2 class="text-3xl font-black text-indigo-700 mt-1">
             {myCoursesCount}
           </h2>
         </div>
-        <div class="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
+        <div class="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-700 flex items-center justify-center">
           <GraduationCap size={26} strokeWidth={2} />
         </div>
       </div>
 
       <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs flex items-center justify-between">
         <div>
-          <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">
+          <p class="text-xs font-semibold uppercase tracking-wider text-slate-600">
             Kursus Diikuti
           </p>
-          <h2 class="text-3xl font-black text-emerald-600 mt-1">{studentCoursesCount}</h2>
+          <h2 class="text-3xl font-black text-emerald-700 mt-1">{studentCoursesCount}</h2>
         </div>
-        <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+        <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-700 flex items-center justify-center">
           <UserCheck size={26} strokeWidth={2} />
         </div>
       </div>
@@ -168,7 +168,7 @@
           <label for="search-course-input" class="sr-only">Cari judul atau materi kursus</label>
           <Search
             size={18}
-            class="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"
+            class="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-600"
           />
           <input
             id="search-course-input"
@@ -176,12 +176,12 @@
             data-testid="search-course-input"
             bind:value={searchQuery}
             placeholder="Cari judul atau materi kursus..."
-            class="w-full pl-10 pr-4 py-2 text-sm rounded-xl border border-slate-200 bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 transition-all"
+            class="w-full pl-10 pr-4 py-2 text-sm rounded-xl border border-slate-200 bg-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 transition-all"
           />
         </div>
 
         <div class="flex items-center gap-2.5">
-          <span class="text-xs font-semibold text-slate-500 uppercase tracking-wide flex items-center gap-1.5">
+          <span class="text-xs font-semibold text-slate-700 uppercase tracking-wide flex items-center gap-1.5">
             <Funnel size={16} /> Filter:
           </span>
           <div class="inline-flex rounded-xl bg-slate-100 p-1 text-xs font-semibold text-slate-600">
@@ -208,7 +208,7 @@
       <!-- Responsive Table -->
       <div class="overflow-x-auto">
         <table class="w-full text-left text-sm text-slate-600">
-          <thead class="bg-slate-50/80 text-xs uppercase tracking-wider font-semibold text-slate-500 border-b border-slate-100">
+          <thead class="bg-slate-50/80 text-xs uppercase tracking-wider font-semibold text-slate-700 border-b border-slate-100">
             <tr>
               <th scope="col" class="px-5 py-3.5 text-center w-16">ID</th>
               <th scope="col" class="px-5 py-3.5">Kursus</th>
@@ -221,15 +221,15 @@
           <tbody class="divide-y divide-slate-100">
             {#if loadingCourses && filteredCourses.length === 0}
               <tr>
-                <td colspan="6" class="px-6 py-12 text-center text-slate-400">
-                  <LoaderCircle size={36} class="mx-auto text-indigo-600 animate-spin mb-2" />
-                  <p class="font-medium text-slate-600">Memuat daftar kursus...</p>
+                <td colspan="6" class="px-6 py-12 text-center text-slate-600">
+                  <LoaderCircle size={36} class="mx-auto text-indigo-700 animate-spin mb-2" />
+                  <p class="font-medium text-slate-700">Memuat daftar kursus...</p>
                 </td>
               </tr>
             {:else if filteredCourses.length === 0}
               <tr>
-                <td colspan="6" class="px-6 py-12 text-center text-slate-400">
-                  <GraduationCap size={40} class="mx-auto text-slate-300 mb-2" />
+                <td colspan="6" class="px-6 py-12 text-center text-slate-600">
+                  <GraduationCap size={40} class="mx-auto text-slate-400 mb-2" />
                   <p class="font-medium">Belum ada data kursus yang cocok.</p>
                 </td>
               </tr>
@@ -239,7 +239,7 @@
                   data-testid={`course-row-${course.id}`}
                   class="hover:bg-slate-50/70 transition-colors group"
                 >
-                  <td class="px-5 py-4 text-center font-mono text-xs font-bold text-slate-400">
+                  <td class="px-5 py-4 text-center font-mono text-xs font-bold text-slate-600">
                     {"#" + course.id}
                   </td>
                   <td class="px-5 py-4">
@@ -248,10 +248,12 @@
                         <img
                           src={course.cover}
                           alt={course.title}
+                          width="40"
+                          height="40"
                           class="w-10 h-10 rounded-lg object-cover border border-slate-200 shrink-0"
                         />
                       {:else}
-                        <div class="w-10 h-10 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0">
+                        <div class="w-10 h-10 rounded-lg bg-indigo-50 text-indigo-700 flex items-center justify-center shrink-0">
                           <BookOpen size={20} />
                         </div>
                       {/if}
@@ -260,7 +262,7 @@
                           {course.title}
                         </p>
                         {#if course.description}
-                          <p class="text-xs text-slate-400 line-clamp-1 mt-0.5">
+                          <p class="text-xs text-slate-600 line-clamp-1 mt-0.5">
                             {course.description}
                           </p>
                         {/if}
@@ -270,7 +272,7 @@
                   <td class="px-5 py-4 hidden md:table-cell text-xs text-slate-600">
                     {course.author?.name || "Instruktur"}
                   </td>
-                  <td class="px-5 py-4 hidden lg:table-cell text-xs text-slate-500">
+                  <td class="px-5 py-4 hidden lg:table-cell text-xs text-slate-600">
                     {formatDate(course.updated_at || course.created_at)}
                   </td>
                   <td class="px-5 py-4 text-center text-xs font-semibold text-slate-700">
@@ -282,7 +284,7 @@
                         type="button"
                         data-testid={`view-course-${course.id}`}
                         on:click={() => goto(`/courses/${course.id}`)}
-                        class="p-1.5 text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors"
+                        class="p-1.5 text-slate-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-lg transition-colors"
                         aria-label="Lihat Detail Kursus"
                       >
                         <Eye size={18} />
@@ -292,7 +294,7 @@
                           type="button"
                           data-testid={`edit-course-${course.id}`}
                           on:click={() => handleEditCourse(course.id)}
-                          class="p-1.5 text-slate-600 hover:text-amber-600 hover:bg-amber-50 rounded-lg transition-colors"
+                          class="p-1.5 text-slate-600 hover:text-amber-700 hover:bg-amber-50 rounded-lg transition-colors"
                           aria-label="Ubah Kursus"
                         >
                           <Pencil size={18} />
@@ -301,7 +303,7 @@
                           type="button"
                           data-testid={`delete-course-${course.id}`}
                           on:click={() => handleDeleteCourse(course.id)}
-                          class="p-1.5 text-slate-600 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                          class="p-1.5 text-slate-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors"
                           aria-label="Hapus Kursus"
                         >
                           <Trash2 size={18} />

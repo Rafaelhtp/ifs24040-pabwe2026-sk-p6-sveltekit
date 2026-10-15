@@ -106,7 +106,7 @@
           data-testid="close-content-modal-btn"
           aria-label="Tutup modal materi"
           on:click={handleClose}
-          class="p-2 rounded-xl text-slate-500 hover:text-slate-700 hover:bg-slate-200/60 transition-colors"
+          class="p-2 rounded-xl text-slate-600 hover:text-slate-800 hover:bg-slate-200/60 transition-colors"
         >
           <X size={20} />
         </button>
@@ -167,7 +167,7 @@
             type="submit"
             data-testid="submit-content-modal-btn"
             disabled={loading}
-            class="inline-flex items-center gap-2 px-6 py-2.5 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 rounded-xl shadow-md shadow-indigo-600/25 transition-all disabled:opacity-60"
+            class="inline-flex items-center gap-2 px-6 py-2.5 text-sm font-semibold text-white bg-indigo-700 hover:bg-indigo-800 active:bg-indigo-900 rounded-xl shadow-md shadow-indigo-600/25 transition-all disabled:opacity-60"
           >
             {#if loading}
               <LoaderCircle size={18} class="animate-spin" />

@@ -170,7 +170,7 @@
             type="button"
             data-testid="add-content-btn"
             on:click={handleAddContent}
-            class="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold rounded-xl text-white bg-indigo-600 hover:bg-indigo-700 shadow-sm transition-colors"
+            class="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold rounded-xl text-white bg-indigo-700 hover:bg-indigo-800 shadow-sm transition-colors"
           >
             <Plus size={16} strokeWidth={2.5} />
             Tambah Materi
@@ -217,7 +217,7 @@
             type="button"
             data-testid="join-course-btn"
             on:click={handleJoinCourse}
-            class="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold rounded-xl text-white bg-emerald-600 hover:bg-emerald-700 shadow-md shadow-emerald-600/25 transition-colors"
+            class="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold rounded-xl text-white bg-emerald-700 hover:bg-emerald-800 shadow-md shadow-emerald-600/25 transition-colors"
           >
             <UserPlus size={16} />
             Daftar Kursus
@@ -242,7 +242,7 @@
       <div class="p-6 sm:p-8 space-y-6">
         <div class="space-y-3">
           <div class="flex flex-wrap items-center gap-3">
-            <span class="font-mono text-xs font-bold text-slate-400">
+            <span class="font-mono text-xs font-bold text-slate-600">
               #{course.id}
             </span>
             {#if isOwner}
@@ -267,35 +267,35 @@
             {course.title}
           </h1>
 
-          <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-slate-500">
+          <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-slate-600">
             <div class="flex items-center gap-1.5">
-              <Users size={14} class="shrink-0 text-slate-400" />
-              <span>Instruktur: <strong class="text-slate-700">{course.author?.name || "Pengajar"}</strong></span>
+              <Users size={14} class="shrink-0 text-slate-600" />
+              <span>Instruktur: <strong class="text-slate-800">{course.author?.name || "Pengajar"}</strong></span>
             </div>
             <div class="flex items-center gap-1.5">
-              <Calendar size={14} class="shrink-0 text-slate-400" />
-              <span>Dibuat: <strong class="text-slate-700">{formatDate(course.created_at)}</strong></span>
+              <Calendar size={14} class="shrink-0 text-slate-600" />
+              <span>Dibuat: <strong class="text-slate-800">{formatDate(course.created_at)}</strong></span>
             </div>
             <div class="flex items-center gap-1.5">
-              <Calendar size={14} class="shrink-0 text-slate-400" />
-              <span>Diperbarui: <strong class="text-slate-700">{formatDate(course.updated_at)}</strong></span>
+              <Calendar size={14} class="shrink-0 text-slate-600" />
+              <span>Diperbarui: <strong class="text-slate-800">{formatDate(course.updated_at)}</strong></span>
             </div>
           </div>
         </div>
 
         <!-- Description -->
         <div class="space-y-2">
-          <h2 class="text-sm font-bold uppercase tracking-wider text-slate-500">
+          <h2 class="text-sm font-bold uppercase tracking-wider text-slate-600">
             Deskripsi Kursus
           </h2>
           <div
             data-testid="course-detail-description"
-            class="text-slate-600 bg-slate-50/70 p-5 rounded-2xl border border-slate-100 leading-relaxed text-sm whitespace-pre-wrap"
+            class="text-slate-700 bg-slate-50/70 p-5 rounded-2xl border border-slate-100 leading-relaxed text-sm whitespace-pre-wrap"
           >
             {#if course.description}
               {course.description}
             {:else}
-              <p class="italic text-slate-400">Tidak ada deskripsi rinci untuk kursus ini.</p>
+              <p class="italic text-slate-600">Tidak ada deskripsi rinci untuk kursus ini.</p>
             {/if}
           </div>
         </div>
@@ -315,7 +315,7 @@
                 type="button"
                 data-testid="add-content-inline-btn"
                 on:click={handleAddContent}
-                class="inline-flex items-center gap-1 text-xs font-semibold text-indigo-600 hover:text-indigo-800"
+                class="inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 hover:text-indigo-900"
               >
                 <Plus size={16} /> Tambah Materi
               </button>
@@ -324,14 +324,14 @@
 
           {#if !course.contents || course.contents.length === 0}
             <div class="text-center py-10 px-4 rounded-2xl border border-dashed border-slate-200 bg-slate-50/50">
-              <Video size={36} class="mx-auto text-slate-300 mb-2" />
-              <p class="text-sm font-medium text-slate-600">Belum ada materi pada kursus ini.</p>
+              <Video size={36} class="mx-auto text-slate-400 mb-2" />
+              <p class="text-sm font-medium text-slate-700">Belum ada materi pada kursus ini.</p>
               {#if isOwner}
                 <button
                   type="button"
                   data-testid="add-first-content-btn"
                   on:click={handleAddContent}
-                  class="mt-3 inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-white bg-indigo-600 rounded-lg hover:bg-indigo-700"
+                  class="mt-3 inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-white bg-indigo-700 rounded-lg hover:bg-indigo-800"
                 >
                   <Plus size={14} /> Tambah Materi Sekarang
                 </button>
@@ -345,21 +345,21 @@
                   class="flex items-center justify-between p-3.5 sm:p-4 rounded-2xl border border-slate-200/80 bg-white hover:border-indigo-200 hover:shadow-xs transition-all group"
                 >
                   <div class="flex items-center gap-3.5 min-w-0">
-                    <div class="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0">
+                    <div class="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-700 flex items-center justify-center shrink-0">
                       <Video size={20} />
                     </div>
                     <div class="min-w-0">
-                      <p class="text-sm font-semibold text-slate-800 truncate group-hover:text-indigo-600 transition-colors">
+                      <h3 class="text-sm font-semibold text-slate-800 truncate group-hover:text-indigo-700 transition-colors">
                         {item.title}
-                      </p>
-                      <div class="flex items-center gap-3 text-xs text-slate-400 mt-0.5">
+                      </h3>
+                      <div class="flex items-center gap-3 text-xs text-slate-600 mt-0.5">
                         <span class="truncate max-w-[200px] sm:max-w-xs">{item.youtube}</span>
                         {#if item.my_status_finished}
-                          <span class="inline-flex items-center gap-1 text-emerald-600 font-semibold">
+                          <span class="inline-flex items-center gap-1 text-emerald-700 font-semibold">
                             <CheckCircle2 size={13} /> Selesai
                           </span>
                         {:else}
-                          <span class="inline-flex items-center gap-1 text-slate-400">
+                          <span class="inline-flex items-center gap-1 text-slate-600">
                             <Circle size={13} /> Belum
                           </span>
                         {/if}
@@ -382,7 +382,7 @@
                         type="button"
                         data-testid={`edit-content-${item.id}`}
                         on:click={() => handleEditContent(item)}
-                        class="p-1.5 text-slate-500 hover:text-amber-600 hover:bg-amber-50 rounded-lg transition-colors"
+                        class="p-1.5 text-slate-600 hover:text-amber-700 hover:bg-amber-50 rounded-lg transition-colors"
                         aria-label="Ubah Materi"
                       >
                         <PenLine size={16} />
@@ -391,7 +391,7 @@
                         type="button"
                         data-testid={`delete-content-${item.id}`}
                         on:click={() => handleDeleteContent(item.id)}
-                        class="p-1.5 text-slate-500 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                        class="p-1.5 text-slate-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors"
                         aria-label="Hapus Materi"
                       >
                         <Trash2 size={16} />
@@ -461,7 +461,7 @@
                     type="submit"
                     data-testid="submit-rating-btn"
                     disabled={submittingRating}
-                    class="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl shadow-xs transition-colors disabled:opacity-60"
+                    class="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-white bg-indigo-700 hover:bg-indigo-800 rounded-xl shadow-xs transition-colors disabled:opacity-60"
                   >
                     {#if submittingRating}
                       <LoaderCircle size={14} class="animate-spin" />
@@ -478,7 +478,7 @@
 
           <!-- Existing Ratings List -->
           {#if !course.ratings || course.ratings.length === 0}
-            <p class="text-xs text-slate-400 italic">Belum ada ulasan dari peserta untuk kursus ini.</p>
+            <p class="text-xs text-slate-600 italic">Belum ada ulasan dari peserta untuk kursus ini.</p>
           {:else}
             <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
               {#each course.ratings as rate, idx (idx)}

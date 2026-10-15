@@ -104,7 +104,7 @@
       <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
         Profil Akun
       </h1>
-      <p class="text-sm text-slate-500 mt-1">
+      <p class="text-sm text-slate-600 mt-1">
         Kelola informasi identitas, foto profil, dan keamanan akun Anda.
       </p>
     </div>
@@ -116,18 +116,21 @@
           <img
             src={profile.photo}
             alt={profile.name}
+            width="96"
+            height="96"
             class="w-24 h-24 rounded-full object-cover border-4 border-white shadow-md ring-2 ring-indigo-100"
           />
         {:else}
-          <div class="w-24 h-24 rounded-full bg-gradient-to-tr from-indigo-600 to-cyan-500 text-white flex items-center justify-center font-bold text-3xl shadow-md">
+          <div class="w-24 h-24 rounded-full bg-gradient-to-tr from-indigo-700 to-cyan-700 text-white flex items-center justify-center font-bold text-3xl shadow-md">
             {profile.name ? profile.name.charAt(0).toUpperCase() : "U"}
           </div>
         {/if}
 
         <label
           data-testid="upload-profile-photo-btn"
-          class="absolute bottom-0 right-0 p-2 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white shadow-md cursor-pointer transition-transform hover:scale-105"
+          class="absolute bottom-0 right-0 p-2 rounded-full bg-indigo-700 hover:bg-indigo-800 text-white shadow-md cursor-pointer transition-transform hover:scale-105"
           title="Ubah Foto Profil"
+          aria-label="Ubah Foto Profil"
         >
           {#if loadingPhoto}
             <LoaderCircle size={16} class="animate-spin" />
@@ -146,7 +149,7 @@
 
       <div class="text-center sm:text-left space-y-1">
         <h2 class="text-xl font-bold text-slate-800">{profile.name}</h2>
-        <p class="text-sm text-slate-500">{profile.email}</p>
+        <p class="text-sm text-slate-600">{profile.email}</p>
         <div class="pt-2">
           <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-50 text-indigo-700 border border-indigo-200/60">
             <Check size={14} /> Terverifikasi
@@ -159,10 +162,10 @@
       <!-- Form Biodata -->
       <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-xs space-y-5">
         <div class="flex items-center gap-2.5 pb-2 border-b border-slate-100">
-          <div class="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center">
+          <div class="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-700 flex items-center justify-center">
             <User size={18} />
           </div>
-          <h3 class="font-bold text-slate-800">Ubah Biodata</h3>
+          <h2 class="font-bold text-slate-800 text-base">Ubah Biodata</h2>
         </div>
 
         <form on:submit|preventDefault={handleUpdateProfile} class="space-y-4">
@@ -199,7 +202,7 @@
               type="submit"
               data-testid="submit-profile-btn"
               disabled={loadingProfile}
-              class="w-full inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 rounded-xl shadow-md shadow-indigo-600/25 transition-all disabled:opacity-60"
+              class="w-full inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-semibold text-white bg-indigo-700 hover:bg-indigo-800 active:bg-indigo-900 rounded-xl shadow-md shadow-indigo-600/25 transition-all disabled:opacity-60"
             >
               {#if loadingProfile}
                 <LoaderCircle size={18} class="animate-spin" />
@@ -215,10 +218,10 @@
       <!-- Form Ganti Password -->
       <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-xs space-y-5">
         <div class="flex items-center gap-2.5 pb-2 border-b border-slate-100">
-          <div class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center">
+          <div class="w-8 h-8 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center">
             <ShieldCheck size={18} />
           </div>
-          <h3 class="font-bold text-slate-800">Keamanan & Password</h3>
+          <h2 class="font-bold text-slate-800 text-base">Keamanan & Password</h2>
         </div>
 
         <form on:submit|preventDefault={handleUpdatePassword} class="space-y-4">

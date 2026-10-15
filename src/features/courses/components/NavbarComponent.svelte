@@ -87,6 +87,8 @@
           <img
             src={profile.photo}
             alt={profile.name}
+            width="32"
+            height="32"
             class="w-8 h-8 rounded-full object-cover border border-slate-200"
           />
         {:else}
@@ -105,7 +107,7 @@
         </div>
         <ChevronDown
           size={16}
-          class="text-slate-500 transition-transform duration-200 {dropdownOpen ? 'rotate-180' : ''}"
+          class="text-slate-600 transition-transform duration-200 {dropdownOpen ? 'rotate-180' : ''}"
         />
       </button>
 
