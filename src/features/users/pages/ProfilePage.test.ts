@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import ProfilePage from "./ProfilePage.svelte";
 import { renderWithProviders } from "../../../test-utils";
+import { FALLBACK_IMAGE_SRC } from "../../../helpers/toolsHelper";
 import * as toolsHelper from "../../../helpers/toolsHelper";
 import { usersStore } from "../states/usersStore";
 
@@ -211,5 +212,19 @@ describe("ProfilePage", () => {
 
     const nameInput = wrapper.find('[data-testid="profile-name-input"]');
     expect(nameInput.element.value).toBe("Updated Name");
+  });
+
+  it("should render profile photo with explicit size and fallback on error", () => {
+    const { wrapper } = renderWithProviders(ProfilePage, {
+      preloadedState: { profile: mockProfile },
+    });
+
+    const img = wrapper.find("img");
+    expect(img.attributes("src")).toBe("https://example.com/photo.jpg");
+    expect(img.attributes("width")).toBe("96");
+    expect(img.attributes("height")).toBe("96");
+
+    img.element.dispatchEvent(new Event("error"));
+    expect(img.attributes("src")).toBe(FALLBACK_IMAGE_SRC);
   });
 });

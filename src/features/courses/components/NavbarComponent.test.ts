@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import NavbarComponent from "./NavbarComponent.svelte";
 import { renderWithProviders } from "../../../test-utils";
+import { FALLBACK_IMAGE_SRC } from "../../../helpers/toolsHelper";
 import { mockGoto } from "../../../setupTests";
 
 describe("NavbarComponent", () => {
@@ -160,5 +161,18 @@ describe("NavbarComponent", () => {
     (logoutBtn.element as HTMLElement).click();
     await new Promise((r) => setTimeout(r, 0));
     expect(wrapper.find('[data-testid="profile-dropdown-menu"]').exists()).toBe(false);
+  });
+
+  it("should render profile photo with explicit size and fallback on error", () => {
+    const { wrapper } = renderWithProviders(NavbarComponent, {
+      props: { profile: mockProfileWithPhoto, isSidebarOpen: false },
+    });
+
+    const img = wrapper.find("img");
+    expect(img.attributes("width")).toBe("32");
+    expect(img.attributes("height")).toBe("32");
+
+    img.element.dispatchEvent(new Event("error"));
+    expect(img.attributes("src")).toBe(FALLBACK_IMAGE_SRC);
   });
 });

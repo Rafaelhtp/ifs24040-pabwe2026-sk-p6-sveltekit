@@ -5,7 +5,7 @@
   import ChangeModal from "../modals/ChangeModal.svelte";
   import { coursesStore } from "../states/coursesStore";
   import { usersStore } from "../../users/states/usersStore";
-  import { formatDate, showConfirmDialog } from "../../../helpers/toolsHelper";
+  import { formatDate, getAssetUrl, handleImageError, showConfirmDialog } from "../../../helpers/toolsHelper";
   import {
     Plus,
     GraduationCap,
@@ -246,10 +246,13 @@
                     <div class="flex items-center gap-3">
                       {#if course.cover}
                         <img
-                          src={course.cover}
+                          src={getAssetUrl(course.cover)}
                           alt={course.title}
                           width="40"
                           height="40"
+                          loading="lazy"
+                          decoding="async"
+                          on:error={handleImageError}
                           class="w-10 h-10 rounded-lg object-cover border border-slate-200 shrink-0"
                         />
                       {:else}

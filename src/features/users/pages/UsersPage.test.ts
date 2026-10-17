@@ -1,7 +1,10 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import UsersPage from "./UsersPage.svelte";
 import { renderWithProviders } from "../../../test-utils";
+import { FALLBACK_IMAGE_SRC } from "../../../helpers/toolsHelper";
 import { usersStore } from "../states/usersStore";
+
+declare const DELCOM_BASEURL: string;
 
 describe("UsersPage", () => {
   beforeEach(() => {
@@ -109,5 +112,22 @@ describe("UsersPage", () => {
     await new Promise((r) => setTimeout(r, 10));
 
     expect(wrapper.text()).not.toContain("Memuat daftar pengguna...");
+  });
+
+  it("should render user photo with explicit size, normalized relative URL and fallback on error", async () => {
+    vi.spyOn(usersStore, "asyncSetUsers").mockImplementation(() => Promise.resolve());
+    const { wrapper } = renderWithProviders(UsersPage, {
+      preloadedState: { users: [{ ...mockUsers[0], photo: "storage/photos/a.png" }] },
+    });
+    await new Promise((r) => setTimeout(r, 20));
+
+    const img = wrapper.find('[data-testid="user-card-1"] img');
+    expect(img.attributes("src")).toBe(`${new URL(DELCOM_BASEURL).origin}/storage/photos/a.png`);
+    expect(img.attributes("width")).toBe("48");
+    expect(img.attributes("height")).toBe("48");
+    expect(img.attributes("loading")).toBe("lazy");
+
+    img.element.dispatchEvent(new Event("error"));
+    expect(img.attributes("src")).toBe(FALLBACK_IMAGE_SRC);
   });
 });

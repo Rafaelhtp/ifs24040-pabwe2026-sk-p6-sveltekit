@@ -6,7 +6,13 @@
   import ContentModal from "../modals/ContentModal.svelte";
   import { coursesStore } from "../states/coursesStore";
   import { usersStore } from "../../users/states/usersStore";
-  import { formatDate, showConfirmDialog, showErrorDialog } from "../../../helpers/toolsHelper";
+  import {
+    formatDate,
+    getAssetUrl,
+    handleImageError,
+    showConfirmDialog,
+    showErrorDialog,
+  } from "../../../helpers/toolsHelper";
   import {
     ArrowLeft,
     ImagePlus,
@@ -231,8 +237,13 @@
       {#if course.cover}
         <div class="relative w-full h-64 sm:h-80 bg-slate-900 overflow-hidden">
           <img
-            src={course.cover}
+            src={getAssetUrl(course.cover)}
             alt={course.title}
+            width="1280"
+            height="320"
+            fetchpriority="high"
+            decoding="async"
+            on:error={handleImageError}
             class="w-full h-full object-cover"
           />
           <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent"></div>

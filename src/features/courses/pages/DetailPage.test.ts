@@ -3,6 +3,8 @@ import DetailPage from "./DetailPage.svelte";
 import { renderWithProviders } from "../../../test-utils";
 import * as toolsHelper from "../../../helpers/toolsHelper";
 import { coursesStore } from "../states/coursesStore";
+import { FALLBACK_IMAGE_SRC } from "../../../helpers/toolsHelper";
+import courseApi from "../api/courseApi";
 import { mockGoto } from "../../../setupTests";
 
 describe("DetailPage", () => {
@@ -86,6 +88,12 @@ describe("DetailPage", () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
+    // ChangeModal memanggil getCourseById saat dibuka; stub agar tidak memanggil API nyata.
+    vi.spyOn(courseApi, "getCourseById").mockResolvedValue({
+      id: 1,
+      title: "Dasar Svelte 5",
+      description: "Deskripsi",
+    } as any);
   });
 
   it("should render loading spinner if profile or course is missing", () => {
@@ -502,5 +510,22 @@ describe("DetailPage", () => {
     });
 
     expect(wrapper.text()).toContain("#");
+  });
+
+  it("should render cover image as high-priority with explicit size and fallback on error", async () => {
+    vi.spyOn(coursesStore, "asyncSetCourse").mockImplementation(() => Promise.resolve());
+    const { wrapper } = renderWithProviders(DetailPage, {
+      props: { courseId: 1 },
+      preloadedState: { profile: mockProfile, course: mockCourseOwner },
+    });
+    await new Promise((r) => setTimeout(r, 20));
+
+    const img = wrapper.find("img");
+    expect(img.attributes("width")).toBe("1280");
+    expect(img.attributes("height")).toBe("320");
+    expect(img.attributes("fetchpriority")).toBe("high");
+
+    img.element.dispatchEvent(new Event("error"));
+    expect(img.attributes("src")).toBe(FALLBACK_IMAGE_SRC);
   });
 });

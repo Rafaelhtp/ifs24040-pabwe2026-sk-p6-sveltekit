@@ -3,6 +3,7 @@
   import { goto } from "$app/navigation";
   import { GraduationCap, User, LogOut, ChevronDown, Menu, X } from "lucide-svelte";
   import type { User as UserType } from "../../users/api/userApi";
+  import { getAssetUrl, handleImageError } from "../../../helpers/toolsHelper";
 
   export let profile: UserType | null = null;
   export let isSidebarOpen: boolean = false;
@@ -85,10 +86,12 @@
       >
         {#if profile?.photo}
           <img
-            src={profile.photo}
+            src={getAssetUrl(profile.photo)}
             alt={profile.name}
             width="32"
             height="32"
+            decoding="async"
+            on:error={handleImageError}
             class="w-8 h-8 rounded-full object-cover border border-slate-200"
           />
         {:else}

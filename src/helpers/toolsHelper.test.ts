@@ -6,7 +6,12 @@ import {
   showSuccessDialog,
   showConfirmDialog,
   formatDate,
+  getAssetUrl,
+  handleImageError,
+  FALLBACK_IMAGE_SRC,
 } from "./toolsHelper";
+
+declare const DELCOM_BASEURL: string;
 
 vi.mock("sweetalert2", () => ({
   default: {
@@ -86,5 +91,26 @@ describe("toolsHelper", () => {
     const formatted = formatDate("2024-02-26T02:34:26.000000Z");
     expect(formatted).toBeTruthy();
     expect(typeof formatted).toBe("string");
+  });
+
+  it("getAssetUrl should keep absolute URLs and prefix relative paths with the API origin", () => {
+    const origin = new URL(DELCOM_BASEURL).origin;
+    expect(getAssetUrl("https://x.test/a.png")).toBe("https://x.test/a.png");
+    expect(getAssetUrl("data:image/png;base64,AAAA")).toBe("data:image/png;base64,AAAA");
+    expect(getAssetUrl("//cdn.test/a.png")).toBe("//cdn.test/a.png");
+    expect(getAssetUrl("storage/a.png")).toBe(`${origin}/storage/a.png`);
+    expect(getAssetUrl("/storage/a.png")).toBe(`${origin}/storage/a.png`);
+  });
+
+  it("handleImageError should replace a broken image source with the inline fallback", () => {
+    const img = document.createElement("img");
+    img.src = "https://example.com/broken.jpg";
+    const event = new Event("error");
+    Object.defineProperty(event, "currentTarget", { value: img });
+
+    handleImageError(event);
+
+    expect(img.getAttribute("src")).toBe(FALLBACK_IMAGE_SRC);
+    expect(FALLBACK_IMAGE_SRC.startsWith("data:image/svg+xml,")).toBe(true);
   });
 });

@@ -1,6 +1,6 @@
 <script lang="ts">
   import { usersStore } from "../states/usersStore";
-  import { showErrorDialog } from "../../../helpers/toolsHelper";
+  import { getAssetUrl, handleImageError, showErrorDialog } from "../../../helpers/toolsHelper";
   import { User, Camera, Check, LoaderCircle, ShieldCheck } from "lucide-svelte";
 
   $: profile = $usersStore.profile;
@@ -114,10 +114,12 @@
       <div class="relative group">
         {#if profile.photo}
           <img
-            src={profile.photo}
+            src={getAssetUrl(profile.photo)}
             alt={profile.name}
             width="96"
             height="96"
+            decoding="async"
+            on:error={handleImageError}
             class="w-24 h-24 rounded-full object-cover border-4 border-white shadow-md ring-2 ring-indigo-100"
           />
         {:else}

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { usersStore } from "../states/usersStore";
-  import { formatDate } from "../../../helpers/toolsHelper";
+  import { formatDate, getAssetUrl, handleImageError } from "../../../helpers/toolsHelper";
   import { Users, Search, Mail, Calendar, LoaderCircle } from "lucide-svelte";
   import type { User } from "../api/userApi";
 
@@ -80,10 +80,13 @@
             <div class="flex items-start gap-3.5">
               {#if u.photo}
                 <img
-                  src={u.photo}
+                  src={getAssetUrl(u.photo)}
                   alt={u.name}
                   width="48"
                   height="48"
+                  loading="lazy"
+                  decoding="async"
+                  on:error={handleImageError}
                   class="w-12 h-12 rounded-full object-cover border border-slate-200 shrink-0"
                 />
               {:else}

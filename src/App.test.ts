@@ -13,10 +13,14 @@ import UsersPageWrapper from "./routes/users/+page.svelte";
 import { renderWithProviders } from "./test-utils";
 import { updateMockPage } from "./setupTests";
 import apiHelper from "./helpers/apiHelper";
+import { usersStore } from "./features/users/states/usersStore";
 
 describe("SvelteKit Routes and Layouts", () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    // CourseLayout memanggil asyncSetProfile() saat onMount; stub agar tidak ada request
+    // jaringan nyata yang hasilnya (goto) bocor ke test lain.
+    vi.spyOn(usersStore, "asyncSetProfile").mockImplementation(() => Promise.resolve());
     updateMockPage({
       url: new URL("http://localhost/"),
       params: { courseId: "1", contentId: "10" },
@@ -28,8 +32,8 @@ describe("SvelteKit Routes and Layouts", () => {
     });
   });
 
-  it("should verify ssr is true in +layout.ts", () => {
-    expect(ssr).toBe(true);
+  it("should verify ssr is false in +layout.ts (client-side rendering)", () => {
+    expect(ssr).toBe(false);
   });
 
   it("should render RootLayout for non-auth route using CourseLayout", () => {

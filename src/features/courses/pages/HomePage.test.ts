@@ -3,6 +3,8 @@ import HomePage from "./HomePage.svelte";
 import { renderWithProviders } from "../../../test-utils";
 import * as toolsHelper from "../../../helpers/toolsHelper";
 import { coursesStore } from "../states/coursesStore";
+import { FALLBACK_IMAGE_SRC } from "../../../helpers/toolsHelper";
+import courseApi from "../api/courseApi";
 import { mockGoto } from "../../../setupTests";
 
 describe("HomePage", () => {
@@ -36,6 +38,12 @@ describe("HomePage", () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
+    // ChangeModal memanggil getCourseById saat dibuka; stub agar tidak memanggil API nyata.
+    vi.spyOn(courseApi, "getCourseById").mockResolvedValue({
+      id: 1,
+      title: "Kursus Pertama",
+      description: "Deskripsi",
+    } as any);
     vi.spyOn(coursesStore, "asyncSetCourses").mockImplementation(() => Promise.resolve());
   });
 
@@ -328,5 +336,20 @@ describe("HomePage", () => {
     await new Promise((r) => setTimeout(r, 20));
 
     expect(wrapper.text()).toContain("Belum ada data kursus");
+  });
+
+  it("should render course cover with explicit size and fallback on error", async () => {
+    const { wrapper } = renderWithProviders(HomePage, {
+      preloadedState: { profile: mockProfile, courses: mockCourses },
+    });
+    await new Promise((r) => setTimeout(r, 20));
+
+    const img = wrapper.find("img");
+    expect(img.attributes("width")).toBe("40");
+    expect(img.attributes("height")).toBe("40");
+    expect(img.attributes("loading")).toBe("lazy");
+
+    img.element.dispatchEvent(new Event("error"));
+    expect(img.attributes("src")).toBe(FALLBACK_IMAGE_SRC);
   });
 });

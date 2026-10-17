@@ -23,6 +23,10 @@ export default defineConfig(({ mode }) => {
   return {
     plugins: [
       sveltekit({
+        // Sisipkan CSS langsung ke <style> di HTML agar tidak ada <link rel="stylesheet">
+        // yang memblokir render. Nilai ini HARUS lebih besar dari ukuran file CSS hasil
+        // build (saat ini ~45 KB); jika CSS tumbuh melewatinya, inlining berhenti diam-diam.
+        inlineStyleThreshold: 60_000,
         adapter,
       }),
       tailwindcss(),
